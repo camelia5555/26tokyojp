@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>旅のしおり - 東京五日漫遊</title>
+    <title>旅のしおり</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=M+PLUS+Rounded+1c:wght@300;400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+
+<style>
+
+.bottom-nav {
+    padding-bottom: env(safe-area-inset-bottom);
+}
         body { 
-            font-family: 'Noto Sans JP', sans-serif; 
-            background-color: #EFECE6; 
-            color: #2D2B28; 
-            -webkit-tap-highlight-color: transparent; 
-        }
+    font-family: 'M PLUS Rounded 1c',"Noto Sans TC", "Noto Sans JP", sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+
+    background-color: #EFECE6;
+    color: #2D2B28;
+    -webkit-tap-highlight-color: transparent;
+}
         .editorial-title {
-            font-family: 'Playfair Display', 'Noto Sans JP', serif;
+            font-family: "M PLUS Rounded 1c", "Noto Sans TC", "Noto Sans JP", sans-serif;
         }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -46,6 +54,37 @@
             color: #2D2B28;
             margin-top: 2px;
         }
+
+/* Bottom Navigation Active Effect */
+
+.nav-active {
+    color: #2D2B28 !important;
+}
+
+.nav-active i {
+    transform: translateY(-3px);
+}
+
+.nav-active::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    width: 38px;
+    height: 38px;
+    background: #EFECE6;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.nav-item {
+    position: relative;
+    transition: all .25s ease;
+}
+
+.nav-item i {
+    transition: transform .25s ease;
+}
+
     </style>
 </head>
 <body class="bg-[#EFECE6] min-h-screen flex justify-center text-[#2D2B28]">
@@ -79,24 +118,22 @@
         <main class="flex-1 p-5 space-y-6" id="mainContentArea">
         </main>
 
-        <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-[#F9F8F5]/95 backdrop-blur-md border-t border-[#E5E2D9] py-3.5 px-4 flex justify-around items-center z-40 shadow-2xl">
-            <button onclick="switchTab('overview')" id="nav-btn-overview" class="flex flex-col items-center text-[#2D2B28] font-bold p-1.5 transition focus:outline-none">
-                <i class="fa-solid fa-house text-lg mb-1"></i>
+        <nav class="bottom-nav fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-[#F9F8F5]/95 backdrop-blur-md border-t border-[#E5E2D9] py-3 px-4 flex justify-around items-center z-40 shadow-2xl">        <button onclick="switchTab('overview')" id="nav-btn-overview" class="nav-item flex flex-col items-center text-[#2D2B28] font-bold p-1.5 transition focus:outline-none">                <i class="fa-solid fa-house text-lg mb-1"></i>
                 <span class="text-[10px] tracking-widest uppercase">總覽</span>
             </button>
-            <button onclick="switchTab('prep')" id="nav-btn-prep" class="flex flex-col items-center text-[#8A867D] p-1.5 transition focus:outline-none">
+            <button onclick="switchTab('prep')" id="nav-btn-prep" class=" nav-item flex flex-col items-center text-[#8A867D] p-1.5 transition focus:outline-none">
                 <i class="fa-solid fa-suitcase-rolling text-lg mb-1"></i>
                 <span class="text-[10px] tracking-widest uppercase">準備</span>
             </button>
-            <button onclick="switchTab('hotel')" id="nav-btn-hotel" class="flex flex-col items-center text-[#8A867D] p-1.5 transition focus:outline-none">
+            <button onclick="switchTab('hotel')" id="nav-btn-hotel" class=" nav-item flex flex-col items-center text-[#8A867D] p-1.5 transition focus:outline-none">
                 <i class="fa-solid fa-hotel text-lg mb-1"></i>
                 <span class="text-[10px] tracking-widest uppercase">住宿</span>
             </button>
-            <button onclick="switchTab('itinerary')" id="nav-btn-itinerary" class="flex flex-col items-center text-[#8A867D] p-1.5 transition focus:outline-none">
+            <button onclick="switchTab('itinerary')" id="nav-btn-itinerary" class=" nav-item flex flex-col items-center text-[#8A867D] p-1.5 transition focus:outline-none">
                 <i class="fa-solid fa-map-location-dot text-lg mb-1"></i>
                 <span class="text-[10px] tracking-widest uppercase">行程</span>
             </button>
-            <button onclick="switchTab('bills')" id="nav-btn-bills" class="flex flex-col items-center text-[#8A867D] p-1.5 transition focus:outline-none">
+            <button onclick="switchTab('bills')" id="nav-btn-bills" class=" nav-item flex flex-col items-center text-[#8A867D] p-1.5 transition focus:outline-none">
                 <i class="fa-solid fa-wallet text-lg mb-1"></i>
                 <span class="text-[10px] tracking-widest uppercase">分帳</span>
             </button>
@@ -110,8 +147,9 @@
                 </div>
                 
                 <div class="bg-[#F3F1EA] p-3 border border-[#E5E2D9] space-y-2 text-xs">
-                    <div class="font-bold text-[#2D2B28]">新增周邊店家</div>
+                   <div id="subPlaceFormTitle" class="font-bold text-[#2D2B28]">新增周邊店家</div>
                     <form onsubmit="handleAddSpotSubPlace(event)" class="space-y-2">
+                     <input type="hidden" id="editingSubPlaceId">
                         <select id="subCat" class="w-full bg-[#F9F8F5] border border-[#E5E2D9] p-2 text-xs text-[#2D2B28]">
                             <option value="餐廳">餐廳</option>
                             <option value="購物">購物</option>
@@ -120,10 +158,13 @@
                             <option value="麵包">麵包</option>
                         </select>
                         <input type="text" id="subName" placeholder="店名" required class="w-full bg-[#F9F8F5] border border-[#E5E2D9] p-2 text-xs text-[#2D2B28]">
+                        <input type="text" id="subSubtitle" placeholder="特色介紹（例：東京知名雞白湯拉麵）"class="w-full bg-[#F9F8F5] border border-[#E5E2D9] p-2 text-xs text-[#2D2B28]">
                         <input type="text" id="subHours" placeholder="營業時間 (例: 10:00 - 20:00)" class="w-full bg-[#F9F8F5] border border-[#E5E2D9] p-2 text-xs text-[#2D2B28]">
                         <input type="text" id="subClosed" placeholder="公休日 (例: 週三)" class="w-full bg-[#F9F8F5] border border-[#E5E2D9] p-2 text-xs text-[#2D2B28]">
+                        <input type="text"id="subNote" placeholder="備註（例：需排隊、建議預約）"class="w-full bg-[#F9F8F5] border border-[#E5E2D9] p-2 text-xs text-[#2D2B28]">
+                        <textarea id="subMenuList"placeholder="推薦品項（每行一個）"rows="3"class="w-full bg-[#F9F8F5] border border-[#E5E2D9] p-2 text-xs text-[#2D2B28]"></textarea>
                         <input type="url" id="subUrl" placeholder="Google 導航連結" class="w-full bg-[#F9F8F5] border border-[#E5E2D9] p-2 text-xs text-[#2D2B28]">
-                        <button type="submit" class="w-full bg-[#2D2B28] text-[#F9F8F5] py-2 text-xs uppercase font-medium focus:outline-none">新增至清單</button>
+                        <button id="subPlaceSubmitBtn" type="submit"class="w-full bg-[#2D2B28] text-[#F9F8F5] py-2 text-xs uppercase font-medium focus:outline-none"> 新增至清單</button>
                     </form>
                 </div>
 
@@ -148,7 +189,7 @@
         <div id="hotelPlaceModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 hidden flex items-end justify-center">
             <div class="bg-[#F9F8F5] border-t border-[#E5E2D9] w-full max-w-md rounded-none p-6 max-h-[85vh] overflow-y-auto shadow-2xl">
                 <div class="flex justify-between items-center mb-4 border-b border-[#E5E2D9] pb-3">
-                    <h3 class="font-bold text-sm text-[#2D2B28] editorial-title">新增住宿周邊地點</h3>
+                    <h3 class="font-bold text-[15px] text-[#2D2B28] editorial-title">新增住宿周邊地點</h3>
                     <button onclick="closeModal('hotelPlaceModal')" class="text-[#8A867D] text-lg p-2 focus:outline-none"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <form id="hotelPlaceForm" onsubmit="handleSaveHotelPlace(event)" class="space-y-4 text-xs">
@@ -481,8 +522,22 @@
     </div>
 
     <script>
-        let JPY_EXCHANGE_RATE = 0.2100;
 
+function getTagColor(category){
+
+    const colors = {
+        "餐廳": "bg-[#FFE0C2] text-[#A65300]",   // 橘色
+        "咖啡": "bg-[#DCEBFF] text-[#24527A]",   // 藍色
+        "甜點": "bg-[#FFDDE8] text-[#A23B5D]",   // 粉色
+        "購物": "bg-[#E8D9FF] text-[#6840A0]",   // 紫色
+        "麵包": "bg-[#FFE0C2] text-[#A65300]"    // 橘色
+    };
+
+    return colors[category] || "bg-[#F3F1EA] text-[#5A574E]";
+}
+
+        let JPY_EXCHANGE_RATE = 0.2100;
+   
         async function fetchLatestExchangeRate() {
             try {
                 const response = await fetch('https://open.er-api.com/v6/latest/JPY');
@@ -490,6 +545,7 @@
                 if(data && data.rates && data.rates.TWD) {
                     JPY_EXCHANGE_RATE = parseFloat((data.rates.TWD).toFixed(4));
                     saveAppData();
+                    renderSpotSubPlacesList();
                     render();
                 }
             } catch (err) {
@@ -500,6 +556,7 @@
         const defaultAppData = {
             currentTab: 'overview',
             activeDay: 1,
+            spotNearbyCollapsed:{},     
             prepCollapsed: {},
             prepCategories: [
                 {
@@ -931,12 +988,22 @@ console.log("LocalStorage合併後 emergencies:", appData.emergencies);
                 const btn = document.getElementById(`nav-btn-${t}`);
                 if(!btn) return;
                 if(t === tabId) {
-                    btn.classList.remove('text-[#8A867D]');
-                    btn.classList.add('text-[#2D2B28]', 'font-bold');
-                } else {
-                    btn.classList.remove('text-[#2D2B28]', 'font-bold');
-                    btn.classList.add('text-[#8A867D]');
-                }
+
+    btn.classList.remove('text-[#8A867D]');
+    btn.classList.add('text-[#2D2B28]', 'font-bold');
+
+    // 加入選中效果
+    btn.classList.add('nav-active');
+
+} else {
+
+    btn.classList.remove('text-[#2D2B28]', 'font-bold');
+    btn.classList.add('text-[#8A867D]');
+
+    // 移除選中效果
+    btn.classList.remove('nav-active');
+
+}
             });
 
             const tripTitleEl = document.getElementById('tripTitle');
@@ -1303,17 +1370,39 @@ console.log("準備同步住宿修改", extractedItem);
         }
 
         let currentSpotContext = { dayNum: null, itemId: null };
+        let editingSpotSubPlace = null;
 
         function openSpotDetailModal(dayNum, itemId) {
-            currentSpotContext = { dayNum, itemId };
-            const day = appData.days.find(d => d.day === dayNum);
-            const item = day.items.find(i => i.id === itemId);
-            if(!item) return;
+    currentSpotContext = { dayNum, itemId };
 
-            document.getElementById('spotModalTitle').innerText = `${item.title} - 周邊詳情`;
-            renderSpotSubPlacesList();
-            openModal('spotDetailModal');
-        }
+    // 設定為新增模式
+    editingSpotSubPlace = null;
+
+    closeModal('spotDetailModal');
+
+    document.getElementById('subPlaceFormTitle').innerText = '新增周邊店家';
+    document.getElementById('subPlaceSubmitBtn').innerText = '新增至清單';
+    document.getElementById('editingSubPlaceId').value = '';
+
+    // 清空表單
+    document.getElementById('subCat').value = '餐廳';
+    document.getElementById('subName').value = '';
+    document.getElementById('subHours').value = '';
+    document.getElementById('subClosed').value = '';
+    document.getElementById('subUrl').value = '';
+
+    const day = appData.days.find(d => d.day === dayNum);
+    const item = day.items.find(i => i.id === itemId);
+
+    if(!item) return;
+
+    document.getElementById('spotModalTitle').innerText =
+        `${item.title} - 周邊詳情`;
+
+    renderSpotSubPlacesList();
+
+    openModal('spotDetailModal');
+}
 
         function renderSpotSubPlacesList() {
             const day = appData.days.find(d => d.day === currentSpotContext.dayNum);
@@ -1339,49 +1428,141 @@ console.log("準備同步住宿修改", extractedItem);
             `).join('');
         }
 
-        function handleAddSpotSubPlace(e) {
-            e.preventDefault();
-            const category = document.getElementById('subCat').value;
-            const name = document.getElementById('subName').value;
-            const hours = document.getElementById('subHours').value;
-            const closed = document.getElementById('subClosed').value;
-            const url = document.getElementById('subUrl').value.trim();
+        async function handleAddSpotSubPlace(e) {
+    e.preventDefault();
 
-            const day = appData.days.find(d => d.day === currentSpotContext.dayNum);
-            const item = day.items.find(i => i.id === currentSpotContext.itemId);
+   const category = document.getElementById('subCat').value;
+   const name = document.getElementById('subName').value;
+   const subtitle = document.getElementById('subSubtitle').value;
+   const hours = document.getElementById('subHours').value;
+   const closed = document.getElementById('subClosed').value;
+   const note = document.getElementById('subNote').value;
+   const menuList = document.getElementById('subMenuList').value
+        .split('\n')
+        .filter(x => x.trim() !== '');
+   const url = document.getElementById('subUrl').value.trim();
 
-            if(!item.subPlaces) item.subPlaces = [];
-            item.subPlaces.push({
-                id: Date.now(),
-                category,
-                name,
-                hours,
-                closed,
-                url
-            });
+
+    const day = appData.days.find(
+        d => d.day === currentSpotContext.dayNum
+    );
+
+    const item = day.items.find(
+        i => i.id === currentSpotContext.itemId
+    );
+
+
+    if(!item.subPlaces) {
+        item.subPlaces = [];
+    }
+
+
+    // 編輯模式
+    if(editingSpotSubPlace){
+
+        const target = item.subPlaces.find(
+            sp => sp.id === editingSpotSubPlace
+        );
+
+
+        if(target){
+    target.category = category;
+    target.name = name;
+    target.subtitle = document.getElementById('subSubtitle').value;
+    target.hours = hours;
+    target.closed = closed;       
+    target.note = document.getElementById('subNote').value;
+
+    target.menuList = document.getElementById('subMenuList').value
+        .split('\n')
+        .filter(x => x.trim() !== '');
+
+    target.url = url;
+
+    console.log("更新後closed:", target.closed);
+}
+
+
+    } 
+    // 新增模式
+    else {
+
+        item.subPlaces.push({
+    id: Date.now(),
+    category,
+    name,
+    subtitle: document.getElementById('subSubtitle').value,
+    hours,
+    closed,
+    note: document.getElementById('subNote').value,
+    menuList: document.getElementById('subMenuList').value
+        .split('\n')
+        .filter(x => x.trim() !== ''),
+    url
+});
+
+    }
+
+
+    saveAppData();
+    await updateItineraryToSheet(
+       item,
+       currentSpotContext.dayNum
+     );
+    renderSpotSubPlacesList();
+    render();
+
+
+    // 重置回新增模式
+    editingSpotSubPlace = null;
+
+
+    document.getElementById('subPlaceFormTitle').innerText =
+        '新增周邊店家';
+
+    document.getElementById('subPlaceSubmitBtn').innerText =
+        '新增至清單';
+
+
+   document.getElementById('subSubtitle').value = '';
+   document.getElementById('subNote').value = '';
+   document.getElementById('subMenuList').value = '';
+
+   // 新增/更新完成後關閉周邊資訊視窗
+   closeModal('spotDetailModal');
+
+}
+
+    async function deleteSpotSubPlace(itemId, subId) {
+
+    if(confirm('確定要刪除這個周邊店家嗎？')) {
+
+        const day = appData.days.find(
+            d => d.day === currentSpotContext.dayNum
+        );
+
+        const item = day.items.find(
+            i => i.id === itemId
+        );
+
+
+        if(item && item.subPlaces) {
+
+            item.subPlaces = item.subPlaces.filter(
+                sp => sp.id !== subId
+            );
+
 
             saveAppData();
-            renderSpotSubPlacesList();
+            await updateItineraryToSheet(
+            item,
+            currentSpotContext.dayNum
+            );
             render();
 
-            document.getElementById('subName').value = '';
-            document.getElementById('subHours').value = '';
-            document.getElementById('subClosed').value = '';
-            document.getElementById('subUrl').value = '';
         }
-
-        function deleteSpotSubPlace(subId) {
-            if(confirm('確定要刪除這個周邊店家嗎？')) {
-                const day = appData.days.find(d => d.day === currentSpotContext.dayNum);
-                const item = day.items.find(i => i.id === currentSpotContext.itemId);
-                if(item && item.subPlaces) {
-                    item.subPlaces = item.subPlaces.filter(sp => sp.id !== subId);
-                    saveAppData();
-                    renderSpotSubPlacesList();
-                    render();
-                }
-            }
-        }
+    }
+}
 
         function formatSmartText(text) {
             if(!text) return '';
@@ -1732,15 +1913,23 @@ console.log("準備同步住宿修改", extractedItem);
                 html += `
                     <div class="bg-[#F3F1EA] border border-[#E5E2D9] p-4 space-y-2 relative">
                         <div class="flex justify-between items-center">
-                            <span class="text-[10px] font-mono text-[#8A867D] bg-[#F9F8F5] px-2 py-0.5 border border-[#E5E2D9]">${item.time}</span>
+                            <span class="text-[12px] font-medium text-[#8A867D] bg-[#F9F8F5] px-2 py-0.5 border border-[#E5E2D9]">${item.time}</span>
                             <div class="flex items-center gap-1.5">
-                                ${!isTransport ? `<button onclick="openSpotDetailModal(${day.day}, ${item.id})" class="text-[10px] bg-amber-100 text-amber-900 border border-amber-300 px-2 py-1 font-bold focus:outline-none"><i class="fa-solid fa-store mr-1"></i>周邊詳情</button>` : ''}
-                                ${item.url ? `<a href="${item.url}" target="_blank" class="text-[10px] bg-[#F9F8F5] text-[#5A574E] border border-[#E5E2D9] px-2 py-1">導航</a>` : ''}
+${!isTransport ? `
+
+<button 
+onclick="openSpotDetailModal(${day.day}, ${item.id})"
+class="text-[10px] bg-[#F9F8F5] text-[#5A574E] border border-[#E5E2D9] px-2 py-1">
+<i class="fa-solid fa-plus mr-1"></i>
+新增周邊
+</button>
+` : ''}                                ${item.url ? `<a href="${item.url}" target="_blank" class="text-[10px] bg-[#F9F8F5] text-[#5A574E] border border-[#E5E2D9] px-2 py-1">導航</a>` : ''}
                                 <button onclick="openEditModal(${day.day}, ${item.id})" class="text-[10px] bg-[#F9F8F5] text-[#8A867D] border border-[#E5E2D9] px-2 py-1 focus:outline-none"><i class="fa-solid fa-pen"></i></button>
                             </div>
                         </div>
-                        <h3 class="font-bold text-sm text-[#2D2B28] editorial-title">${item.title}</h3>
+                        <h3 class="font-bold text-[15px] text-[#2D2B28] editorial-title">${item.title}</h3>
                         <p class="text-xs text-[#5A574E] leading-relaxed">${formatSmartText(item.desc)}</p>
+                        ${!isTransport ? renderInlineSpotSubPlaces(item) : ''}
                     </div>
                 `;
             });
@@ -1748,6 +1937,234 @@ console.log("準備同步住宿修改", extractedItem);
             html += `</div></div>`;
             container.innerHTML = html;
         }
+function renderInlineSpotSubPlaces(item){
+
+    const subPlaces = (item.subPlaces || []).sort((a,b)=>{
+    
+        const order = [
+            "餐廳",
+            "咖啡",
+            "甜點",
+            "麵包",
+            "購物"
+        ];
+
+        return order.indexOf(a.category)
+             - order.indexOf(b.category);
+
+    });
+
+   const grouped = {};
+
+subPlaces.forEach(sp => {
+
+    if(!grouped[sp.category]){
+        grouped[sp.category] = [];
+    }
+
+    grouped[sp.category].push(sp);
+
+});
+
+    return `
+        <div class="mt-3 border-t border-[#E5E2D9] pt-3">
+
+            <button 
+                onclick="toggleInlineSpotSubPlaces(${item.id})"
+                class="w-full flex justify-between items-center text-xs text-[#5A574E] bg-[#F9F8F5] px-3 py-2 border border-[#E5E2D9]">
+
+                <span>
+                    ▼ 周邊資訊（${subPlaces.length}）
+                </span>
+
+            </button>
+
+
+            <div id="spot-sub-${item.id}" class="hidden mt-2 space-y-4">
+
+                ${Object.entries(grouped).map(([category, places]) => `
+                
+                <div>
+
+                    <div class="mb-2">
+                        <span class="rounded-full px-3 py-1 text-[10px] ${getTagColor(category)}">
+                            ${category}
+                        </span>
+                    </div>
+
+
+                    ${places.map(sp => `
+
+                    <div class="bg-[#F9F8F5] border border-[#E5E2D9] p-3">
+
+   <div class="flex justify-end items-center">
+
+        <div class="flex gap-1">
+
+        <button
+        onclick="editSpotSubPlace(${item.id}, ${sp.id})"
+        class="text-[10px] border border-[#E5E2D9] px-2 py-1 bg-white">
+            <i class="fa-solid fa-pen"></i>
+        </button>
+
+
+        <button
+        onclick="deleteSpotSubPlace(${item.id}, ${sp.id})"
+        class="text-[10px] border border-[#E5E2D9] px-2 py-1 text-rose-500 bg-white">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+
+    </div>
+
+</div>
+
+<div class="bg-white border border-[#E5E2D9] p-4 space-y-3">
+
+
+    <!-- 店名 + 特色 -->
+    <div class="flex items-center gap-2 flex-wrap">
+
+        <div class="font-bold text-[15px] text-[#2D2B28]">
+              ${sp.name}
+        </div>
+
+        ${sp.subtitle ? `
+<span class="rounded-full bg-[#E8F1F5] px-3 py-1 text-[10px] text-[#526B78] font-medium">
+    ${sp.subtitle}
+</span>
+` : ''}
+
+    </div>
+
+
+    <div class="border-t border-[#E5E2D9]"></div>
+
+
+    <!-- 時間 / 公休 / 備註 -->
+    <div class="text-[11px] text-[#5A574E] leading-relaxed">
+
+        ${sp.hours ? `🕒 ${sp.hours}` : ''}
+
+        ${sp.closed ? `
+       　📅 公休：${sp.closed}
+        ` : ''}
+
+
+        ${sp.note ? `
+        　※ ${sp.note}
+        ` : ''}
+
+    </div>
+
+
+
+    <!-- 推薦品項 -->
+    ${sp.menuList && sp.menuList.length ? `
+
+    <div class="flex flex-wrap gap-2">
+
+        ${sp.menuList.map(menu => `
+        <span class="rounded-lg bg-[#DDF3E4] px-3 py-1.5 text-[10px] text-[#376B46] font-medium">
+    ${menu}
+</span>
+        `).join('')}
+
+    </div>
+
+    ` : ''}
+
+
+
+    <!-- Google -->
+    ${sp.url ? `
+    <a href="${sp.url}" target="_blank"
+class="block text-center bg-[#F9F8F5] border border-[#2D2B28] text-[#2D2B28] py-2 text-[12px] rounded-lg">
+    Google MAP ↗
+</a>
+    ` : ''}
+
+
+</div>
+                       
+
+                    </div>
+
+                `).join('')}
+
+            </div>
+        
+                `).join('')}
+        </div>
+    `;
+}
+
+function toggleInlineSpotSubPlaces(id){
+
+    const el = document.getElementById(`spot-sub-${id}`);
+
+    if(el){
+        el.classList.toggle('hidden');
+    }
+
+}
+
+function toggleSpotNearby(id){
+
+    appData.spotNearbyCollapsed[id] =
+    !appData.spotNearbyCollapsed[id];
+
+    saveAppData();
+    render();
+
+}
+
+function editSpotSubPlace(itemId, subId){
+
+    const day = appData.days.find(
+        d => d.day === currentSpotContext.dayNum
+    );
+
+    const item = day.items.find(
+        i => i.id === itemId
+    );
+
+    const sp = item.subPlaces.find(
+        s => s.id === subId
+    );
+
+    if(!sp) return;
+
+
+    document.getElementById('subCat').value = sp.category;
+document.getElementById('subName').value = sp.name;
+
+document.getElementById('subSubtitle').value = sp.subtitle || '';
+
+document.getElementById('subHours').value = sp.hours || '';
+
+document.getElementById('subClosed').value = sp.closed || '';
+
+document.getElementById('subNote').value = sp.note || '';
+
+document.getElementById('subMenuList').value = 
+    sp.menuList ? sp.menuList.join('\n') : '';
+
+document.getElementById('subUrl').value = sp.url || '';
+
+
+    editingSpotSubPlace = subId;
+
+
+    document.getElementById('subPlaceFormTitle').innerText =
+        '編輯周邊店家';
+
+
+    document.getElementById('subPlaceSubmitBtn').innerText =
+        '更新資料';
+
+
+    openModal('spotDetailModal');
+}
 
         function renderBills(container) {
             let totalTWD = 0;
