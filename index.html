@@ -1564,6 +1564,40 @@ console.log("準備同步住宿修改", extractedItem);
     }
 }
 
+function toggleSubCategory(itemId, category){
+
+    const box = document.getElementById(
+        `sub-category-${itemId}-${category}`
+    );
+
+    const arrow = document.getElementById(
+        `arrow-${itemId}-${category}`
+    );
+
+
+    if(!box) return;
+
+
+    if(box.classList.contains('hidden')){
+
+        box.classList.remove('hidden');
+
+        if(arrow){
+            arrow.innerText = '▼';
+        }
+
+    }else{
+
+        box.classList.add('hidden');
+
+        if(arrow){
+            arrow.innerText = '▸';
+        }
+
+    }
+
+}
+
         function formatSmartText(text) {
             if(!text) return '';
             return text
@@ -1986,12 +2020,23 @@ subPlaces.forEach(sp => {
                 
                 <div>
 
-                    <div class="mb-2">
-                        <span class="rounded-full px-3 py-1 text-[10px] ${getTagColor(category)}">
-                            ${category}
-                        </span>
-                    </div>
+                    <button
+onclick="toggleSubCategory('${item.id}', '${category}')"
+class="mb-2 flex items-center gap-2">
 
+    <span id="arrow-${item.id}-${category}">
+        ▸
+    </span>
+
+    <span class="rounded-full px-3 py-1 text-[10px] ${getTagColor(category)}">
+        ${category}（${places.length}）
+    </span>
+
+</button>
+
+<div 
+id="sub-category-${item.id}-${category}"
+class="hidden space-y-2">
 
                     ${places.map(sp => `
 
@@ -2090,6 +2135,8 @@ class="block text-center bg-[#F9F8F5] border border-[#2D2B28] text-[#2D2B28] py-
                     </div>
 
                 `).join('')}
+
+            </div>
 
             </div>
         
